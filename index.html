@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>About Me</title>
+  <style>
+    body { font-family: sans-serif; background: #727272; display: flex; justify-content: center; padding: 40px; }
+    .card { background: white; padding: 150px; border-radius: 16px; width: 360px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+  </style>
+</head>
+
+<body>
+<div class = "card">
+<center><h2>About Me</h2></center>
+<h2 id="nickname"></h2>
+  <p id="name"></p>
+  <p id="age"></p>
+  <p id="school"></p>
+  <p id="hobbies"></p>
+  <p>You can Follow Me from Here vvv</p>
+  <a href="https://www.instagram.com/babymiestar_/"><img src="Image/IG.jpg" alt="ME" width="60" height="70"></a>
+  <img src="Image/ME.jpg" alt="Me" width="200" height="300">
+</div>
+
+  <script>
+    async function loadIntro() {
+      const res = await fetch('http://localhost:3000/intro');
+      const data = await res.json();
+
+      document.getElementById('nickname').innerText = data.nickname;
+      document.getElementById('name').innerText = data.Name;
+      document.getElementById('age').innerText = 'อายุ ' + data.age + ' ปี';
+      document.getElementById('school').innerText = 'โรงเรียน ' + data.school;
+      document.getElementById('hobbies').innerText = 'งานอดิเรก: ' + data.hobbies.join(', ');
+    }
+
+    loadIntro();
+  </script>
+</body>
+
+</html>
